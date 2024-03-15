@@ -1,0 +1,13 @@
+vi ~/.bash_profile
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias sart='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan'
+alias sup='[ -f sail ] && bash sail artisan || bash vendor/bin/sail up -d'
+alias sdo='[ -f sail ] && bash sail artisan || bash vendor/bin/sail down'
+alias smigr='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan migrate'
+alias smakmigr='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan make:migration'
+alias smakmodel='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan make:model'
+alias smakres='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan make:resource'
+alias smakcon='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan make:controller'
+alias swagg='bash vendor/bin/sail artisan l5-swagger:generate'
+alias seed='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan migrate --seed'
+alias sback='[ -f sail ] && bash sail artisan || bash vendor/bin/sail artisan migrate:rollback --step=1'

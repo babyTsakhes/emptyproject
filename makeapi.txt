@@ -1,0 +1,27 @@
+sart make:migration
+sart migrate 
+# создать миграции с таблицами для апи
+sart make:model 
+# select all options
+#В TaskFactory создать код в definition()
+#return ['name' => fake()->sentence()]; 
+#	https://www.dev-notes.ru/articles/laravel/fake-helper/
+#	https://www.teknowize.com/articles/web-articles/how-to-create-fake-data-in-database-using-laravel#gsc.tab=0
+#	https://shouts.dev/articles/laravel-10-how-to-generate-fake-data-with-laravels-faker-library
+#DatabaseSeeder public function run() {Task::factory(10)->create();}
+
+sart migrate --seed
+# создать папку Api/V1, 
+# перенести в нее TaskController и не забыть изменить пространства имен
+#запустить в контроллере сниппет 
+#		jja
+#изменить имя модели и переменной прописать пространство имен
+#запустить спиппет 
+#		rtapi в api.php
+
+sart route:list --path=api
+
+sart make:resource 
+#TaskResource 
+#изменяем метод to_array()
+#return TaskResource::collection(Task::all()) index in TaskController

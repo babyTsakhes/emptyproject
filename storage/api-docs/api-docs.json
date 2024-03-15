@@ -1,0 +1,278 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Документация к API для олимпиады Я-профессионал",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/groups": {
+            "get": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Group all",
+                "operationId": "cf4dced9ccb87825a0b5fcf646f2936b",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupSchema"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/group?": {
+            "post": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Group store",
+                "operationId": "445eeeeb6883bd0aaa2da1eeb8e1f9d8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/group/{id}": {
+            "get": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Group one with Partisipants",
+                "operationId": "503198cbe27d30a4ecc9b4c165a21ecb",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupPartisipantsSchema"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Group one with Partisipants",
+                "operationId": "03d577d1f25219c3147b66f5faa2cf95",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupSchema"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Group destroy",
+                "operationId": "2996567e3d0061dcd05452982feded14",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/path/{id}": {
+            "delete": {
+                "tags": [
+                    "Participant"
+                ],
+                "summary": "Participant destroy",
+                "operationId": "ce366e34e2b36f8e0d4ead6332b2a7b2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GroupSchema": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Имя сущности ",
+                        "type": "string",
+                        "example": "Looks",
+                        "nullable": "true"
+                    },
+                    "decription": {
+                        "description": "decription сущности ",
+                        "type": "string",
+                        "example": "super good",
+                        "nullable": "false"
+                    }
+                },
+                "type": "object"
+            },
+            "GroupPartisipantsSchema": {
+                "properties": {
+                    "name": {
+                        "description": "Имя сущности ",
+                        "type": "string",
+                        "example": "Looks",
+                        "nullable": "false"
+                    },
+                    "decription": {
+                        "description": "decription сущности ",
+                        "type": "string",
+                        "example": "super good",
+                        "nullable": "false"
+                    },
+                    "participants": {
+                        "description": "участники группы",
+                        "properties": {
+                            "id": {
+                                "description": "id сущности ",
+                                "type": "integer",
+                                "example": "1",
+                                "nullable": "false"
+                            },
+                            "name": {
+                                "description": "Имя сущности ",
+                                "type": "string",
+                                "example": "Looks",
+                                "nullable": "false"
+                            },
+                            "wish": {
+                                "description": "какой хочет подарок ",
+                                "type": "string",
+                                "example": "super good",
+                                "nullable": "false"
+                            }
+                        },
+                        "type": "object",
+                        "nullable": false
+                    }
+                },
+                "type": "object"
+            },
+            "ParticipantSchema": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "id сущности ",
+                        "type": "integer",
+                        "example": "1",
+                        "nullable": "false"
+                    },
+                    "name": {
+                        "description": "Имя сущности ",
+                        "type": "string",
+                        "example": "Ann",
+                        "nullable": "false"
+                    },
+                    "wish": {
+                        "description": "какой хочет подарок ",
+                        "type": "string",
+                        "example": "car BMB",
+                        "nullable": "false"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

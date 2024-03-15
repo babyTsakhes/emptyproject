@@ -1,0 +1,166 @@
+{
+	
+	"Простое апи 5 действий MODEL model": {
+		"prefix": "jja",
+		"body": [
+		  "public function index()",
+		  "    {",
+		  "       ",
+		  "        return MODELResource::collection(MODEL::all());",
+		  "    }",
+		  "",
+		  "public function store(StoreMODELRequest \\$request)",
+		  "    {",
+		  "        \\$model = MODEL::create(\\$request->validated());",
+		  "",
+		  "        return MODELResource::make(\\$model);",
+		  "       ",
+		  "    }",
+		  "",
+		  "",
+		  "public function show(\\$id)",
+		  "    {",
+		  "        \\$model = MODEL::find(\\$id);",
+		  "        \\$message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);",
+		  "        return (is_null(\\$model)) ? response( \\$message, 404)",
+		  "            ->header('Content-Type', 'application/json') : MODELResource::make(\\$model); ",
+		  "    }",
+		  "",
+		  "",
+		  "public function update(UpdateMODELRequest \\$request, \\$id)",
+		  "    {",
+		  "        \\$model = MODEL::find(\\$id);",
+		  "        \\$message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);",
+		  "        if(is_null(\\$model)){",
+		  "            return response( \\$message, 404)",
+		  "            ->header('Content-Type', 'application/json') ;",
+		  "        }",
+		  "        else{",
+		  "            \\$model->update(\\$request->validated());",
+		  "            \\$model->fresh();",
+		  "        }",
+		  "        ",
+		  "        return MODELResource::make(\\$model);",
+		  "    }",
+		  "",
+		  "",
+		  "public function destroy(\\$id)",
+		  "    {",
+		  "        \\$model = MODEL::find(\\$id);",
+		  "        \\$message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);",
+		  "        if(is_null(\\$model)){",
+		  "            return response(\\$message, 404)->header('Content-Type','application/json');",
+		  "        }",
+		  "        else{",
+		  "            \\$model->delete();",
+		  "            ",
+		  "        }",
+		  "        return response()->noContent();",
+		  "",
+		  "        ",
+		  "    }"
+		],
+		"description": "Простое апи 5 действий MODEL model"
+	  },
+
+	  "Реализация связи многие ко многим в модели": {
+		"prefix": "belmany",
+		"body": [
+		  " public function childs(): BelongsToMany",
+		  "    {",
+		  "        return \\$this->belongsToMany(PARENT::class, 'таблица связей', 'PARENT_id', 'CHILD_id');",
+		  "    }"
+		],
+		"description": "Реализация связи многие ко многим в модели"
+	  },
+
+	  "Дебаг": {
+		"prefix": "debb",
+		"body": [
+		  "var_dump($1); die;"
+		],
+		"description": "Дебаг"
+	  },
+
+	  "foreach ассоциативного массива": {
+		"prefix": "forval",
+		"body": [
+		  "foreach($1 as \\$k=>\\$val)",
+		  "{",
+		  "",
+		  "}"
+		],
+		"description": "foreach ассоциативного массива"
+	  },
+
+	  "foreach простого массива": {
+		"prefix": "forarr",
+		"body": [
+		  "foreach($1 as \\$val )",
+		  "{",
+		  "  $2",
+		  "}"
+		],
+		"description": "foreach простого массива"
+	  },
+
+	  "маршруты АПИ ПРоСТОГО": {
+		"prefix": "rtapi",
+		"body": [
+		  "Route::prefix('v1')->group(function(){",
+		  "    Route::get('/models', [MODELController::class, 'index']);",
+		  "    Route::get('/model/{id}', [MODELController::class, 'show']);",
+		  "    Route::post('/model', [MODELController::class, 'store']);",
+		  "    Route::put('/model/{id}', [MODELController::class, 'update']);",
+		  "    Route::delete('/model/{id}', [MODELController::class, 'destroy']);",
+		  "    ",
+		  "} );"
+		],
+		"description": "маршруты АПИ ПРоСТОГО"
+	  },
+
+
+      "без врапа AppServiceProvider boot()": {
+        "prefix": "nowrap",
+        "body": [
+          "JsonResource::withoutWrapping();"
+        ],
+        "description": "AppServiceProvider boot()"
+      },
+
+	  "Request toarray()": {
+		"prefix": "reqarr",
+		"body": [
+		  " return [",
+		  "            'name'=>\\$this->name,",
+		  "            'surname'=>\\$this->surname,",
+		  "            'passport'=>\\$this->passport,",
+		  "            'gender'=>\\$this->gender",
+		  "        ];"
+		],
+		"description": "Request toarray()"
+	  },
+
+      "rules StoreRequest": {
+		"prefix": "rull",
+		"body": [
+		  "return [",
+		  "            'name'=>'required|string|max:255',",
+		  "            'gender'=>'required',",
+		  "            'surname'=>'string|max:600',",
+		  "            'passport'=>'required|string|max:10|unique:users'",
+		  "        ];",
+		  "//https://laravel.su/docs/10.x/validation"
+		],
+		"description": "rules StoreRequest"
+	  },
+
+	  "withoutWrapping AppServiceProvider": {
+		"prefix": "wrwr",
+		"body": [
+		  "JsonResource::withoutWrapping();"
+		],
+		"description": "withoutWrapping"
+	  }
+
+}
