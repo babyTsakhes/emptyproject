@@ -13,60 +13,60 @@ class ParticipantController extends Controller
 {
   public function index($groupId,$participantId)
       {
-         
+
         $participant = Group::find($groupId)->participants()
                     ->where('id', $participantId)
                     ->first();
           return ParticipantResource::collection(Participant::all());
       }
-  
+
   public function toss($id)
       {
-        
+
             $participants = Group::find($id)->participants;
             $count = $participants->count();
 
             if($count % 2 == 0 && $count >= 3){
                 $arr = [];
                 $i = 0;
-                
+
                 foreach($participants as $p)
                 {
                     var_dump($p->id); die;
                     array_push($arr, $p->id);
                     $i++;
-                    
+
                 }
             }else if( $count < 3){
                 $t = 3-$count;
                 $message = json_encode(["message'=>'Нельзя ! Добавьте в группу $t участника."]);
                 return response( $message, 300)
-                    ->header('Content-Type', 'application/json') ; 
+                    ->header('Content-Type', 'application/json') ;
             }
             else if($count % 2 != 0){
                 $message = json_encode(["message'=>'Нельзя ! Добавьте в группу 1 участника."]);
                 return response( $message, 300)
-                    ->header('Content-Type', 'application/json') ; 
+                    ->header('Content-Type', 'application/json') ;
             }
-           
-           
-        
-          
-         
-      }
-  
-  
-  public function showRecipient($groupId,$participantId)
-      {
-        $participant = Participant::find($participantId)->recepient;
 
-        var_dump($participant); die;
+
+
+
+
+      }
+
+
+  public function showRecepient($groupId,$participantId)
+      {
+         $participant = Participant::find($participantId);
+
+         //var_dump($participant); die;
           $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
           return (is_null($participant)) ? response( $message, 404)
-              ->header('Content-Type', 'application/json') : ParticipantResource::make($participant); 
+              ->header('Content-Type', 'application/json') : ParticipantResource::make($participant->recepient_id);
       }
-  
-  
+
+
   public function update(UpdateParticipantRequest $request, $id)
       {
           $participant = Participant::find($id);
@@ -79,11 +79,11 @@ class ParticipantController extends Controller
               $participant->update($request->validated());
               $participant->fresh();
           }
-          
+
           return ParticipantResource::make($participant);
       }
-  
-  
+
+
       /**
        * @OA\Delete(
        *   tags={"Participant"},
@@ -96,11 +96,11 @@ class ParticipantController extends Controller
   *         required=true,
   *         example="1"
      *   ),
-       *  
+       *
        *   @OA\Response(
        *     response=204,
        *     description="No Content",
-       *     
+       *
        *   ),
        *   @OA\Response(response=404, description="Not Found")
        * )
@@ -118,10 +118,10 @@ class ParticipantController extends Controller
           }
           else{
               $participant->delete();
-              
+
           }
           return response()->noContent();
-  
-          
+
+
       }
 }
