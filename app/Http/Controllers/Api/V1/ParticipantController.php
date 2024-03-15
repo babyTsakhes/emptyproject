@@ -26,17 +26,22 @@ class ParticipantController extends Controller
             $participants = Group::find($id)->participants;
             $count = $participants->count();
 
+            $col = ParticipantResource::collection($participants)->select(['id']);
+            var_dump($col->select(['id'])->all()); die;
             if($count % 2 == 0 && $count >= 3){
                 $arr = [];
                 $i = 0;
 
+
                 foreach($participants as $p)
                 {
-                    var_dump($p->id); die;
+
                     array_push($arr, $p->id);
                     $i++;
 
                 }
+
+
             }else if( $count < 3){
                 $t = 3-$count;
                 $message = json_encode(["message'=>'Нельзя ! Добавьте в группу $t участника."]);
