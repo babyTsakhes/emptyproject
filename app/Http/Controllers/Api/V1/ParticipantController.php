@@ -26,21 +26,30 @@ class ParticipantController extends Controller
             $participants = Group::find($id)->participants;
             $count = $participants->count();
 
-            $col = ParticipantResource::collection($participants)->select(['id']);
-            var_dump($col->select(['id'])->all()); die;
+
             if($count % 2 == 0 && $count >= 3){
-                $arr = [];
+                $recs = ParticipantResource::collection($participants)->select(['id'])->all();
                 $i = 0;
-
-
-                foreach($participants as $p)
+                $recid = [];
+                foreach($recs as $key=> $val )
+                {
+                    $recid[$i] = $val['id'];
+                    $i++;
+                }
+                $partid = $recid;
+                shuffle($recid);
+                $i = 0;
+                $yet = [];//уже назначенные
+                shuffle($recid);
+                foreach($partid as $id )
                 {
 
-                    array_push($arr, $p->id);
-                    $i++;
+                    $part = Participant::find($id);
 
+                    $part->recepient_id =array_pop($recid);
+                    $part->save();
                 }
-
+                // die;
 
             }else if( $count < 3){
                 $t = 3-$count;
