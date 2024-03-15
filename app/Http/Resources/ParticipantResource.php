@@ -29,8 +29,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *            nullable="false",
  *            example="car BMB"
  *        ),
- *        
- *      
+ *
+ *
  *    )
  * )
  */
@@ -47,8 +47,8 @@ class ParticipantResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'wish'=>$this->wish,
-            'recepient_id'=>$this->recepient_id,
-            
+            //'recepient_id'=>$this->recepient_id,
+
         ];
     }
 }

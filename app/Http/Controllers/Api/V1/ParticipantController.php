@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\Swagger\Controller;
 use App\Http\Requests\StoreParticipantRequest;
 use App\Http\Requests\UpdateParticipantRequest;
 use App\Http\Resources\ParticipantResource;
+use App\Http\Resources\ParticipantResourceWithoutReci;
 use App\Models\Group;
 use App\Models\Participant;
 
@@ -73,11 +74,16 @@ class ParticipantController extends Controller
   public function showRecepient($groupId,$participantId)
       {
          $participant = Participant::find($participantId);
+         $rec = Participant::find($participant->recepient_id);
+         if((is_null($participant) || is_null($rec))){
+            $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+            return response( $message, 404);
+         }
+         else{
 
-         //var_dump($participant); die;
-          $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
-          return (is_null($participant)) ? response( $message, 404)
-              ->header('Content-Type', 'application/json') : ParticipantResource::make($participant->recepient_id);
+            return ParticipantResource::make($rec);
+         }
+
       }
 
 
