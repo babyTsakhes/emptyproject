@@ -23,8 +23,18 @@ class StoreGroupRequest extends FormRequest
     {
         return [
                     'name'=>'required|string|max:255|min:1',
-                    'decription'=>'',
+                    'description'=>'nullable',
                 ];
         //https://laravel.su/docs/10.x/validation
     }
+
+    public function messages()
+{
+    return [
+        'name.required' => 'HEY! :attribute is required',
+
+    ];
+}
+
+
 }
