@@ -76,7 +76,7 @@ class ParticipantController extends Controller
          $participant = Participant::find($participantId);
          $rec = Participant::find($participant->recepient_id);
          if((is_null($participant) || is_null($rec))){
-            $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+            $message = json_encode(['message'=>'Not Found this record. It may have been deleted']);
             return response( $message, 404);
          }
          else{
@@ -90,7 +90,7 @@ class ParticipantController extends Controller
   public function update(UpdateParticipantRequest $request, $id)
       {
           $participant = Participant::find($id);
-          $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+          $message = json_encode(['message'=>'Not Found this record. It may have been deleted']);
           if(is_null($participant)){
               return response( $message, 404)
               ->header('Content-Type', 'application/json') ;
@@ -132,7 +132,7 @@ class ParticipantController extends Controller
         ->first();
 
         //var_dump($participant); die;
-          $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+        $message = json_encode(['message'=>'Not Found this record. It may have been deleted']);
           if(is_null($participant)){
               return response($message, 404)->header('Content-Type','application/json');
           }

@@ -119,7 +119,7 @@ class GroupController extends Controller
 
 
             //var_dump($group); die;
-            $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+            $message = json_encode(['message'=>'Not Found this record. It may have been deleted']);
             return (is_null($group)) ? response( $message, 404)
                 ->header('Content-Type', 'application/json') : $group;
         }
@@ -159,7 +159,7 @@ class GroupController extends Controller
     public function update(UpdateGroupRequest $request, $id)
         {
             $group = Group::find($id);
-            $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+            $message = json_encode(['message'=>'Not Found this record. It may have been deleted']);
             if(is_null($group)){
                 return response( $message, 404)
                 ->header('Content-Type', 'application/json') ;
@@ -194,7 +194,7 @@ class GroupController extends Controller
     public function destroy($id)
         {
             $group = Group::find($id);
-            $message = json_encode(['message'=>'Такой записи не существует. Возможно, она была удалена']);
+            $message = json_encode(['message'=>'Not Found this record. It may have been deleted']);
             if(is_null($group)){
                 return response($message, 404)->header('Content-Type','application/json');
             }
