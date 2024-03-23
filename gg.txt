@@ -1,4 +1,4 @@
 git add .
-git commit -m "создание апи"
+git commit -m "правки"
 
 git push origin main
