@@ -10,5 +10,5 @@ class Person extends Model
     use HasFactory;
 
     protected $table = 'people';
-    protected $fillable  = ['name','surname', 'gender', 'passport'];
+    protected $fillable  = ['name','surname', 'fathername', 'email'];
 }

@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-    Route::get('/persons', [PersonController::class, 'index']);
+/*     Route::get('/persons', [PersonController::class, 'index']);
     Route::get('/person/{id}', [PersonController::class, 'show']);
     Route::post('/person', [PersonController::class, 'store']);
     Route::put('/person/{id}', [PersonController::class, 'update']);
@@ -40,7 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     Route::delete('/group/{groupId}/participant/{participantId}', [ParticipantController::class, 'destroy']);
     Route::get('/group/{groupId}/participant/{participantId}/recipient', [ParticipantController::class, 'showRecepient']);
-    Route::post('/group/{id}/toss', [ParticipantController::class, 'toss']);
+    Route::post('/group/{id}/toss', [ParticipantController::class, 'toss']); */
 
  //   /group/{groupId}/participant/{participantId}
 

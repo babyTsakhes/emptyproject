@@ -1,4 +1,4 @@
 git add .
-git commit -m "правки"
+git commit -m "создание фильтра"
 
 git push origin main
