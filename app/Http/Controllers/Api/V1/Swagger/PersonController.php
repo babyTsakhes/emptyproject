@@ -15,6 +15,8 @@ class PersonController extends Controller
 //https://haait.net/how-to-use-swagger-in-laravel/
    
 }
+
+
 /**
       * @OA\Get(
       *   tags={"Person"},
