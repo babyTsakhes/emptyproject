@@ -1,4 +1,4 @@
 git add .
-git commit -m "создание фильтра"
+git commit -m "создание фильтра email"
 
 git push origin main

@@ -80,6 +80,15 @@ class PersonController extends Controller
             
         }
 
+        public function showEmail($email)
+        {
+           
+            $persons = Person::select(['name','surname','fathername','email'])->where('email',$email)->get();
+            //var_dump($person->name); die;
+            return view('persons.filterResult',compact('persons'));
+            
+        }
+
 
         public function showLike($like)
         {

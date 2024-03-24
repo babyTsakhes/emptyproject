@@ -28,6 +28,8 @@ Route::get('/', function () {
     Route::get('/showFatherame/{fathername}', [PersonController::class, 'showFathername']);
 
     //Route::get('/showFIO/name={name}/{surname}/{fathername}', [PersonController::class, 'showFIO']);
+    //showEmail
+    Route::get('/showEmail/{email}', [PersonController::class, 'showEmail']);
     Route::get('/showFIO', [PersonController::class, 'showFIO']);
     Route::get('/showLike/{like}', [PersonController::class, 'showLike']);
     Route::post('/store', [PersonController::class, 'store'])->name('persons.store');
